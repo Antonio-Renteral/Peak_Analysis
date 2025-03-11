@@ -157,15 +157,22 @@ Este archivo contiene información crucial sobre las regiones de unión de los 1
 
 ```
 1. Inicio
-2. Leer archivo de picos
-3. Para cada registro:
-   a. Obtener TF_name, Peak_start, Peak_end
-   b. Extraer secuencia del genoma usando Peak_start y Peak_end
-   c. Agrupar secuencias por TF_name
-4. Por cada TF_name:
-   a. Crear archivo FASTA
-   b. Escribir secuencias en archivo
-5. Fin
+2.Validar archivos de entrada
+    a. Si el archivo de picos no existe, mostrar error y terminar
+    b. Si el archivo FASTA del genoma no existe, mostrar error y terminar
+3. Leer archivo de picos
+4. Para cada registro:
+    a. Comprobar que TF_name, Peak_start, Peak_end estén presentes
+    b. Si alguno de los campos falta, registrar error y continuar
+    c. Verificar que Peak_start y Peak_end están dentro del rango del genoma
+    d. Si están fuera de rango, registrar error y continuar
+    e. Obtener TF_name, Peak_start, Peak_end
+    f. Extraer secuencia del genoma usando Peak_start y Peak_end
+    g. Agrupar secuencias por TF_name
+5. Por cada TF_name:
+    a. Crear archivo FASTA
+    b. Escribir secuencias en archivo
+6. Fin
 ```
 
 #### Módulo 2: Automatizador del Análisis con `meme`
@@ -177,6 +184,7 @@ Este archivo contiene información crucial sobre las regiones de unión de los 1
 1.  **Lectura de Entradas:**
     
     - Directorio con archivos fasta.
+    - Validar que el directorio no esté vacío y contenga archivos `.fa`
     
 2.  **Generación de Comandos:**
     
@@ -184,19 +192,25 @@ Este archivo contiene información crucial sobre las regiones de unión de los 1
     -   Generar una línea de comando para ejecutar `meme` usando cada archivo FASTA.
     -   Incluir opciones necesarias (por ejemplo, `-oc <output_directory>`, `-mod oops`, etc.) y asegurar nombrar el directorio de salida para cada ejecución de `meme`.
 3.  **Salida del Script:**
-    - salida a pantalla
+    -    Guardar el script generado en un archivo `run_meme.sh`
+    -    Asegurarse de que el script sea ejecutable (cambiar permisos si es necesario).
     
 
 **Algoritmo:**
 
 ```plaintext
 1. Inicio
-2. Leer todos los archivos FASTA en el directorio
-3. Para cada archivo FASTA:
-   a. Formar comando: meme <archivo_fasta> -oc <nombre_directorio> ... 
-   b. Imprimir comando
-4. Redireccionar salida a un archivo script: run_meme.sh
-5. Fin
+2. Validar directorio de entrada:
+    a. Si el directorio no existe o está vacío, mostrar error y terminar.
+3. Leer todos los archivos FASTA en el directorio:
+    a. Si no se encuentran archivos `.fa`, mostrar error y terminar.
+4.Crear archivo script 
+5. Para cada archivo FASTA:
+    a. Formar comando: meme <archivo_fasta> -oc <nombre_directorio> ... 
+    b. Escribir comando en el archivo script.
+6. Asegurar que el script `run_meme.sh` sea ejecutable:
+    a. Cambiar permisos del archivo script para hacerlo ejecutable
+7. Fin
 ```
 
 
@@ -210,21 +224,27 @@ Usar un editor para visualizar el diagrama <https://sujoyu.github.io/plantuml-pr
 actor "Usuario" as usuario
 
 rectangle "Sistema de Extracción y Creación de FASTA (Python)" {
-    usecase "Leer archivo de picos y genoma FASTA" as UC1
-    usecase "Extraer y agrupar secuencias por TF_name" as UC2
-    usecase "Generar archivos FASTA" as UC3
+    usecase "Validar archivos de entrada" as UC1
+    usecase "Leer archivo de picos y genoma FASTA" as UC2
+    usecase "Extraer y agrupar secuencias por TF_name" as UC3
+    usecase "Generar archivos FASTA" as UC4
 }
 
 rectangle "Script de Automatización de meme (Shell)" {
-    usecase "Leer directorio de archivos FASTA" as UC4
-    usecase "Generar script de comandos meme" as UC5
+    usecase "Validar directorio de entrada" as UC5
+    usecase "Leer directorio de archivos FASTA" as UC6
+    usecase "Generar script de comandos meme" as UC7
+    usecase "Asegurar ejecutabilidad del script" as UC8
 }
 
 usuario --> UC1 : Ejecuta script Python
 UC1 --> UC2
-UC2 --> UC3 : Guarda archivos FASTA
-usuario --> UC4 : Ejecuta script Shell
-UC4 --> UC5 : Crea script de ejecución de meme
+UC2 --> UC3
+UC3 --> UC4 : Guarda archivos FASTA
+usuario --> UC5 : Ejecuta script Shell
+UC5 --> UC6
+UC6 --> UC7 : Crea script de ejecución de meme
+UC7 --> UC8 : Hace script ejecutable
 
 @enduml
 ```
@@ -233,13 +253,16 @@ En formato marmaid, que stackEdit sí reconoce.
 
 ```mermaid
 %% Diagrama de Casos de Uso en Mermaid
-%% Representa la interacción del usuario con el sistema de extracción y creación de FASTA
+%% Representa la interacción del usuario con el sistema de extracción y creación de FASTA y la automatización del análisis con meme
 
 graph TD
-  usuario["🧑 Usuario"] -->|Ejecuta script Python| UC1["📂 Leer archivo de picos y genoma FASTA"]
-  UC1 --> UC2["🔍 Extraer y agrupar secuencias por TF_name"]
-  UC2 -->|Guarda archivos FASTA| UC3["📄 Generar archivos FASTA"]
+  usuario["🧑 Usuario"] -->|Ejecuta script Python| UC1["📂 Validar archivos de entrada"]
+  UC1 --> UC2["📂 Leer archivo de picos y genoma FASTA"]
+  UC2 --> UC3["🔍 Extraer y agrupar secuencias por TF_name"]
+  UC3 -->|Guarda archivos FASTA| UC4["📄 Generar archivos FASTA"]
   
-  usuario -->|Ejecuta script Shell| UC4["📂 Leer directorio de archivos FASTA"]
-  UC4 -->|Crea script de ejecución de meme| UC5["⚙️ Generar script de comandos meme"]
+  usuario -->|Ejecuta script Shell| UC5["📂 Validar directorio de entrada"]
+  UC5 --> UC6["📂 Leer directorio de archivos FASTA"]
+  UC6 -->|Crea script de ejecución de meme| UC7["⚙️ Generar script de comandos meme"]
+  UC7 --> UC8["⚙️ Asegurar ejecutabilidad del script"]
 ```
