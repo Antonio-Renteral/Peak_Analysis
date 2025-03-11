@@ -54,3 +54,50 @@ ls
 log.out
 fasta_peaks/
 ```
+
+4.  **Caso: Generación exitosa de archivos FASTA.**
+
+   - **Entradas:**
+       - Archivo de picos válido.
+       - Archivo FASTA del genoma válido.
+       - Directorio de salida.
+   - **Esperado:**
+       - Archivos FASTA generados correctamente en el directorio de salida.
+
+```python
+    mk_fasta_from_peaks.py -i peak_file.txt -g Ecoli.fna -o fasta_peaks/ 
+```
+
+```bash
+ls fasta_peaks/
+```
+
+5.  **Caso: Directorio de salida no existe.**
+
+   - **Entradas:**
+      - Archivo de picos válido.
+      - Archivo FASTA del genoma válido.
+      - Ruta de directorio de salida inexistente.
+   - **Esperado:**
+      - El sistema debe crear el directorio de salida automáticamente y generar los archivos FASTA.
+
+```python
+    mk_fasta_from_peaks.py -i peak_file.txt -g Ecoli.fna -o nonexistent_dir/
+```
+
+```bash
+ls nonexistent_dir/
+```
+
+6.  **Caso: Archivo de picos con campos faltantes.**
+
+  - **Entradas:**
+     - Archivo de picos con algunos campos `TF_name`, `Peak_start` o `Peak_end` faltantes.
+     - Archivo FASTA del genoma válido.
+     - Directorio de salida.
+  - **Esperado:**
+     - El sistema debe imprimir un mensaje de error indicando los campos faltantes y continuar con las siguientes líneas del archivo de picos.
+
+```python
+    mk_fasta_from_peaks.py -i peak_file.txt -g Ecoli.fna -o fasta_peaks/ 
+```
