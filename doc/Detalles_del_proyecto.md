@@ -4,7 +4,7 @@ Fecha: [dd/mm/yyyy]
 
 Participantes: 
 
-- [nombre]  <email: > 
+- [Addiel Antonio Platas Renteral]  <email: addielpr@lcg.unam.mx> 
 
 ## Descripción del Problema
 <!-- Puedes empezar con una introducción, luego la justificación y plantear el problema. -->
@@ -32,7 +32,10 @@ El proyecto busca automatizar la extracción y el análisis de secuencias genóm
     
     -   Crear archivos FASTA individuales para cada `TF_name`. Los nombres de los archivos deben coincidir con el `TF_name` y usar la extensión `.fa`.
     -   Almacenar estos archivos en el directorio de salida especificado.
-    
+4.  **Validación de Datos:**
+
+    -    Validar que el formato de los archivos de entrada sea correcto antes de proceder con el análisis
+    -    Asegurarse de que las coordenadas `Peak_start` y `Peak_end` estén dentro del rango del genoma de E. coli.
 
 
 #### B. *Automatización del Análisis de Motivos:**
@@ -67,6 +70,12 @@ El proyecto busca automatizar la extracción y el análisis de secuencias genóm
     -   Documentación clara y comentarios efectivos deben acompañar todo el proyecto.
     -   Deben realizarse pruebas las pruebas necesarias para la validación correcta del software.
 
+-   **Optimización del Rendimiento:**
+    -   Implementar paralelización para manejar grandes conjuntos de datos y mejorar la eficiencia del proceso.
+    -   Monitorear y optimizar el uso de memoria y CPU durante la ejecución del script.
+
+-   **Seguridad:**
+    -   Asegurarse de que los datos sensibles estén adecuadamente protegidos y cumplir con las normativas de privacidad.
 
 
 ### C. Descripción de Datos de Entrada y Salida 
