@@ -18,10 +18,16 @@ def leer_archivo_picos(peaks_path):
                 continue
             # Podemos dividir las lineas por tabulaciones y al mimso tiempo quitamos saltos de linea y espacios
             partes = linea.strip().split("\t") 
+
+            # Tomamos las columnas correctas
+            tf_name = partes[2]  # TF_name esta en la columna 1 (indice 1)
+            start = int(float(partes[3]))  # Peak_start esta en la columna 2 (indice 2), lo convertimos a entero
+            end = int(float(partes[4]))    # Peak_end esta en la columna 3 (indice 3), lo convertimos a entero
+            
             pico = {  # Creamos un diccionario con los datos del pico
-                "TF_name": partes[0],
-                "start": int(partes[1]),
-                "end": int(partes[2])
+                "TF_name": tf_name,
+                "start": start,
+                "end": end
             }
             peaks_data.append(pico)
     return peaks_data
@@ -55,8 +61,6 @@ def guardar_fasta_por_tf(secuencias_por_tf, output_dir):
                 archivo.write(f"{secuencias[j]}\n")  # Escribir la secuencia
 
 """Esta es la parte principal del codigo que se encarga de ejecutar como tal el script"""
-
-import os
 
 fasta_path = "C:\\Users\\addie\\Documents\\Peak_Analysis\\data\\E_coli_K12_MG1655_U00096.3.txt"  # Ruta al archivo FASTA
 peaks_path = "C:\\Users\\addie\\Documents\\Peak_Analysis\\data\\union_peaks_file.tsv"  # Ruta al archivo TSV de picos
