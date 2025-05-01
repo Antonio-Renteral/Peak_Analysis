@@ -58,9 +58,9 @@ def guardar_fasta_por_tf(secuencias_por_tf, output_dir):
 
 import os
 
-fasta_path = "C:\Users\addie\Documents\Peak_Analysis\data\E_coli_K12_MG1655_U00096.3.txt"  # Ruta al archivo FASTA
-peaks_path = "C:\Users\addie\Documents\Peak_Analysis\data\union_peaks_file.tsv"     # Ruta al archivo TSV de picos
-output_dir = "C:\Users\addie\Documents\Peak_Analysis\results"        # Carpeta de salida
+fasta_path = "C:\\Users\\addie\\Documents\\Peak_Analysis\\data\\E_coli_K12_MG1655_U00096.3.txt"  # Ruta al archivo FASTA
+peaks_path = "C:\\Users\\addie\\Documents\\Peak_Analysis\\data\\union_peaks_file.tsv"  # Ruta al archivo TSV de picos
+output_dir = "C:\\Users\\addie\\Documents\\Peak_Analysis\\results"  # Carpeta de salida
 
 # Ejecucion de las funciones principales
 genoma = cargar_genoma(fasta_path)
