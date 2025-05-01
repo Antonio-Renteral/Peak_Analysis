@@ -8,6 +8,7 @@ def cargar_genoma(fasta_path):
             genoma += linea.strip()  # Con strip quitamos saltos de linea y agregamos la linea
     return genoma
 
+
 def leer_archivo_picos(peaks_path):
     """Lee el archivo de picos y devuelve una lista de diccionarios con TF_name, start y end."""
     peaks_data = []  # Lista vacia para almacenar los picos
@@ -32,6 +33,7 @@ def leer_archivo_picos(peaks_path):
             peaks_data.append(pico)
     return peaks_data
 
+
 def extraer_secuencias(peaks_data, genoma):
     """Agrupa las secuencias extraídas por TF_name en un diccionario."""
     secuencias_por_tf = {}  # Crea un diccionario vacio
@@ -44,6 +46,7 @@ def extraer_secuencias(peaks_data, genoma):
             secuencias_por_tf[tf_name] = []  # Crear una lista vacia para ese TF_name
         secuencias_por_tf[tf_name].append(secuencia) # Agrega secuencia extraida a la lista asociada al TF_name
     return secuencias_por_tf
+
 
 def guardar_fasta_por_tf(secuencias_por_tf, output_dir):
     """Guarda archivos FASTA separados por cada TF_name."""
@@ -61,6 +64,7 @@ def guardar_fasta_por_tf(secuencias_por_tf, output_dir):
             for j in range(len(secuencias)):  # Recorrer las secuencias
                 archivo.write(f">secuencia_{j + 1}\n")  # Escribir encabezado
                 archivo.write(f"{secuencias[j]}\n")  # Escribir la secuencia
+
 
 """Esta es la parte principal del codigo que se encarga de ejecutar como tal el script"""
 
