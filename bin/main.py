@@ -29,7 +29,7 @@ from extraer_secuencias import extraer_secuencias
 from guardar_fasta_por_tf import guardar_fasta_por_tf
 
 # Declaracion de rutas
-fasta_path = os.path.join("..", "data", "datos.txt")
+fasta_path = os.path.join("..", "data", "E_coli_K12_MG1655_U00096.3.txt")
 peaks_path = os.path.join("..", "data", "union_peaks_file.tsv")
 output_dir = os.path.join("..", "results")
 
