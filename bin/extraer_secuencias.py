@@ -17,7 +17,7 @@ def extraer_secuencias(peaks_data, genoma):
         tf_name = pico["TF_name"]
         start = pico["start"]
         end = pico["end"]
-        secuencia = genoma[start:end]  # Extrae la secuencia del genoma
+        secuencia = genoma[start:end + 1]  # Extrae la secuencia del genoma
         if tf_name not in secuencias_por_tf:
             secuencias_por_tf[tf_name] = []  # Crea una lista para el TF_name
         secuencias_por_tf[tf_name].append(secuencia)  # Añade la secuencia extraída
