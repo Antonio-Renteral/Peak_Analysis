@@ -26,6 +26,7 @@ def parse_args():
     
     # Agrega el argumento para la ruta del archivo FASTA del genoma
     parser.add_argument(
+        "-f", # Podrías agregar un atajo para este argumento, por ejemplo, "-f" para facilitar su uso
         "--fasta_path",  # Nombre del argumento
         type=str,  # Tipo de dato esperado (cadena de texto)
         default=os.path.join("..", "data", "E_coli_K12_MG1655_U00096.3.txt"),  # Valor predeterminado
@@ -34,6 +35,7 @@ def parse_args():
     
     # Agrega el argumento para la ruta del archivo de picos en formato TSV
     parser.add_argument(
+        "-p", # Otra opción para facilitar el uso, por ejemplo, "-p" para picos
         "--peaks_path",  # Nombre del argumento
         type=str,  # Tipo de dato esperado
         default=os.path.join("..", "data", "union_peaks_file.tsv"),  # Valor predeterminado
@@ -42,6 +44,7 @@ def parse_args():
     
     # Agrega el argumento para el directorio de salida donde se guardarán los resultados
     parser.add_argument(
+        "-o",  # Podrías agregar un atajo para este argumento también, por ejemplo, "-o" para output
         "--output_dir",  # Nombre del argumento
         type=str,  # Tipo de dato esperado
         default=os.path.join("..", "results"),  # Valor predeterminado
