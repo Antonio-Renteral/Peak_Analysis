@@ -1,22 +1,22 @@
 def cargar_genoma(fasta_path):
     """
-    Permite cargar el genoma a partir de un archivo en formato FASTA
+    Carga el genoma desde un archivo en formato FASTA.
 
-    Este metodo procesa un archivo para cargar el contenido del genoma,
-    omitiendo las lineas de encabezado que comienzan con el caracter '>'.
-    Devuelve el genoma como una unica cadena de texto.
+    Este método procesa un archivo para cargar el contenido del genoma,
+    omitiendo las líneas de encabezado que comienzan con el carácter '>'.
+    Devuelve el genoma como una única cadena de texto.
 
     Args:
         fasta_path (str): Ruta al archivo FASTA que contiene el genoma.
 
     Returns:
-        str: El genoma completo representado como una sola cadena de texto,
+        str: El genoma completo como una sola cadena de texto, 
         sin encabezados ni saltos de línea.
     """
-    genoma = ""  # Inicializamos el genoma como cadena vacia
+    genoma = ""  # Inicializa el genoma como cadena vacía
     with open(fasta_path, "r") as archivo:
-        for linea in archivo:  # Leer linea por linea nuestro archivo
-            if linea.startswith(">"):  # Evita los encabezados (">")
-                continue 
-            genoma += linea.strip()  # Con strip quitamos saltos de linea y agregamos la linea
+        for linea in archivo:
+            if linea.startswith(">"):  # Omite encabezados
+                continue
+            genoma += linea.strip()  # Elimina saltos de línea y agrega el contenido
     return genoma

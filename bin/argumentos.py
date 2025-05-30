@@ -21,24 +21,32 @@ def parse_args():
         argparse.Namespace: Un objeto que contiene los valores de los argumentos proporcionados.
     """
 
-    
+    # Crea un analizador de argumentos con una descripción breve de su propósito
     parser = argparse.ArgumentParser(description="Procesa datos genómicos para extraer y guardar secuencias.")
+    
+    # Agrega el argumento para la ruta del archivo FASTA del genoma
     parser.add_argument(
-        "--fasta_path",
-        type=str,
-        default=os.path.join("..", "data", "E_coli_K12_MG1655_U00096.3.txt"),
-        help="Ruta al archivo FASTA del genoma."
+        "--fasta_path",  # Nombre del argumento
+        type=str,  # Tipo de dato esperado (cadena de texto)
+        default=os.path.join("..", "data", "E_coli_K12_MG1655_U00096.3.txt"),  # Valor predeterminado
+        help="Ruta al archivo FASTA del genoma."  # Descripción del argumento
     )
+    
+    # Agrega el argumento para la ruta del archivo de picos en formato TSV
     parser.add_argument(
-        "--peaks_path",
-        type=str,
-        default=os.path.join("..", "data", "union_peaks_file.tsv"),
-        help="Ruta al archivo de picos en formato TSV."
+        "--peaks_path",  # Nombre del argumento
+        type=str,  # Tipo de dato esperado
+        default=os.path.join("..", "data", "union_peaks_file.tsv"),  # Valor predeterminado
+        help="Ruta al archivo de picos en formato TSV."  # Descripción del argumento
     )
+    
+    # Agrega el argumento para el directorio de salida donde se guardarán los resultados
     parser.add_argument(
-        "--output_dir",
-        type=str,
-        default=os.path.join("..", "results"),
-        help="Directorio de salida para guardar los resultados."
+        "--output_dir",  # Nombre del argumento
+        type=str,  # Tipo de dato esperado
+        default=os.path.join("..", "results"),  # Valor predeterminado
+        help="Directorio de salida para guardar los resultados."  # Descripción del argumento
     )
+    
+    # Retorna los argumentos analizados en un objeto Namespace
     return parser.parse_args()

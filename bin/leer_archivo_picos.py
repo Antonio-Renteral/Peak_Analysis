@@ -1,6 +1,6 @@
 import pandas as pd
 
-def leer_archivo_picos(peaks_path): 
+def leer_archivo_picos(peaks_path):
     """
     Lee un archivo de picos en formato TSV y devuelve una lista de diccionarios con información.
 
@@ -28,6 +28,7 @@ def leer_archivo_picos(peaks_path):
     except FileNotFoundError:
         print(f"Error: No se encontró el archivo en la ruta {peaks_path}.")
         raise
+
     except Exception as e:
         print(f"Error al procesar el archivo de picos: {e}")
         raise
