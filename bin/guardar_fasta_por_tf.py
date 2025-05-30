@@ -15,6 +15,7 @@ def guardar_fasta_por_tf(secuencias_por_tf, output_dir):
         output_dir (str): Ruta al directorio donde se guardaran los archivos.
     """
 
+    # Verificamos la existencia del directorio de salida
     if not os.path.exists(output_dir):  # Verificar existencia
         os.mkdir(output_dir)  # Crear la carpeta si no existe
 

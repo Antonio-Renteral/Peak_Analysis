@@ -43,6 +43,14 @@ if __name__ == "__main__":
     peaks_path = args.peaks_path
     output_dir = args.output_dir
 
+    # Verificar que el archivo del genoma existe
+    if not os.path.exists(fasta_path):
+        raise FileNotFoundError(f"Error: El archivo FASTA del genoma no existe en la ruta: {fasta_path}")
+    
+    # Verificar que el archivo de picos existe
+    if not os.path.exists(peaks_path):
+        raise FileNotFoundError(f"Error: El archivo de picos no existe en la ruta: {peaks_path}")
+
     # Ejecución de las funciones principales del script
     genoma = cargar_genoma(fasta_path)
     peaks_data = leer_archivo_picos(peaks_path)
