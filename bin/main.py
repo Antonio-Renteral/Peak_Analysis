@@ -10,9 +10,7 @@ de línea de comandos al ejecutar el script:
 
 Argumentos disponibles:
 - `--fasta_path`: Ruta al archivo FASTA del genoma 
-  (por defecto: ../data/E_coli_K12_MG1655_U00096.3.txt).
 - `--peaks_path`: Ruta al archivo de picos en formato TSV 
-  (por defecto: ../data/union_peaks_file.tsv).
 - `--output_dir`: Directorio donde se guardarán los archivos de salida 
   (por defecto: ../results).
 

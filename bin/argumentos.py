@@ -11,9 +11,7 @@ def parse_args():
 
     Argumentos definidos:
     - `--fasta_path` (str): Ruta al archivo FASTA que contiene las secuencias genómicas. 
-      Valor predeterminado: "../data/E_coli_K12_MG1655_U00096.3.txt".
     - `--peaks_path` (str): Ruta al archivo de picos en formato TSV. 
-      Valor predeterminado: "../data/union_peaks_file.tsv".
     - `--output_dir` (str): Directorio donde se guardarán los resultados generados. 
       Valor predeterminado: "../results".
 
@@ -28,7 +26,7 @@ def parse_args():
     parser.add_argument(
         "--fasta_path",  # Nombre del argumento
         type=str,  # Tipo de dato esperado (cadena de texto)
-        default=os.path.join("..", "data", "E_coli_K12_MG1655_U00096.3.txt"),  # Valor predeterminado
+        required = True, # Obligatorio
         help="Ruta al archivo FASTA del genoma."  # Descripción del argumento
     )
     
@@ -36,7 +34,7 @@ def parse_args():
     parser.add_argument(
         "--peaks_path",  # Nombre del argumento
         type=str,  # Tipo de dato esperado
-        default=os.path.join("..", "data", "union_peaks_file.tsv"),  # Valor predeterminado
+        required = True, # Obligatorio
         help="Ruta al archivo de picos en formato TSV."  # Descripción del argumento
     )
     
