@@ -1,6 +1,6 @@
 # Proyecto de Automatización para la Identificación de Sitios de Unión de Factores de Transcripción en E. coli en experimentos de ChIP-Seq
 
-Fecha: [dd/mm/yyyy]
+Fecha: [29/05/2025]
 
 Participantes: 
 
@@ -54,6 +54,7 @@ El proyecto busca automatizar la extracción y el análisis de secuencias genóm
     -   El módulo debe generar un script de shell que contiene todas las líneas de comandos necesarias para ejecutar `meme` en cada archivo FASTA.
     -   Este script debe grabarse en el directorio de trabajo actual con un nombre predefinido, como `run_meme.sh`.
     
+Es importante mencionar que esta parte de la automatizacion mediante el uso de meme aún queda pendiente
 
 ### **Requisitos No Funcionales:**
 
