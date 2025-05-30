@@ -22,7 +22,7 @@ def leer_archivo_picos(peaks_path):
         df = pd.read_csv(peaks_path, sep="\t")
 
         # Seleccionar las columnas relevantes y convertir a lista de diccionarios
-        peaks_data = df[["TF_name", "start", "end"]].to_dict(orient="records")
+        peaks_data = df[["TF_name", "Peak_start", "Peak_end"]].to_dict(orient="records")
         return peaks_data
 
     except FileNotFoundError:
