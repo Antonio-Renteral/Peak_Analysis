@@ -57,7 +57,7 @@ Para asegurar la calidad y mantenibilidad del software, el proyecto seguirá est
 
 ## Plan de Implementación
 
-1. **Desarrollo del Extractor de Secuencias**: Programación de la tarea que consiste en genera los archivos FASTA a partir del archivo de picos. Como es un proceso automatizado, todos la información requerida para ejecutar los programas debe ser por línea de comandos.
+1. **Desarrollo del Extractor de Secuencias**: Programación de la tarea que consiste en genera los archivos FASTA a partir del archivo de picos. Como es un proceso automatizado, todos la información requerida para ejecutar los programas debe ser por línea de comandos. Esto lo haremos mediante el uso de la libreria argparse que nos permitira manejar los argumentos introducidos por el usuario
 2. **Automatización del Análisis con `meme`**: Scripting del proceso de ejecución del análisis de motivos para cada TF.
 3. **Integración y Pruebas**: Combinación de los módulos desarrollados y realización de pruebas integrales para asegurar la funcionalidad.
 4. **Despliegue y Capacitación**: Implementación del sistema en el servidor del colaborador y capacitación de usuarios sobre su uso.
