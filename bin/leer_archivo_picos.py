@@ -1,39 +1,33 @@
-def leer_archivo_picos(peaks_path):
-    """
-    Lee un archivo de picos y devuelve una lista de diccionarios con informacion.
+import pandas as pd
 
-    Este metodo permite procesar un archivo de picos en formato TSV, donde cada linea
-    contiene datos de los picos asociados a factores de transcripcion (TF). 
-    Omite el encabezado y convierte las columnas relevantes en una estructura
-    de diccionario para cada pico.
+def leer_archivo_picos(peaks_path): 
+    """
+    Lee un archivo de picos en formato TSV y devuelve una lista de diccionarios con información.
+
+    Utiliza Pandas para procesar el archivo de picos, donde cada fila contiene datos
+    asociados a factores de transcripción (TF). Convierte las columnas relevantes en 
+    una estructura de diccionario para cada pico.
 
     Args:
         peaks_path (str): Ruta al archivo de picos en formato TSV.
 
     Returns:
         list[dict]: Una lista de diccionarios, cada uno con las claves:
-            - "TF_name" (str): Nombre del factor de transcripcion.
-            - "start" (int): Posicion inicial del pico.
-            - "end" (int): Posicion final del pico.
+            - "TF_name" (str): Nombre del factor de transcripción.
+            - "start" (int): Posición inicial del pico.
+            - "end" (int): Posición final del pico.
     """
-    peaks_data = []  # Lista vacia para almacenar los picos
-    with open(peaks_path, "r") as archivo:
-        for linea in archivo:
-            # En caso de que sea el encabezado, nos saltamos esa linea
-            if "TF_name" in linea:
-                continue
-            # Dividir lineas por tabulaciones
-            partes = linea.strip().split("\t") 
+    try:
+        # Leer el archivo TSV usando Pandas
+        df = pd.read_csv(peaks_path, sep="\t")
 
-            # Tomamos las columnas correctas
-            tf_name = partes[2]
-            start = int(float(partes[3]))
-            end = int(float(partes[4]))
-            
-            pico = {  # Creamos un diccionario con los datos del pico
-                "TF_name": tf_name,
-                "start": start,
-                "end": end
-            }
-            peaks_data.append(pico)
-    return peaks_data
+        # Seleccionar las columnas relevantes y convertir a lista de diccionarios
+        peaks_data = df[["TF_name", "start", "end"]].to_dict(orient="records")
+        return peaks_data
+
+    except FileNotFoundError:
+        print(f"Error: No se encontró el archivo en la ruta {peaks_path}.")
+        raise
+    except Exception as e:
+        print(f"Error al procesar el archivo de picos: {e}")
+        raise
