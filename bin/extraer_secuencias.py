@@ -13,11 +13,11 @@ def extraer_secuencias(peaks_data, genoma):
             con las secuencias extraídas correspondientes.
     """
     secuencias_por_tf = {}  # Diccionario para almacenar las secuencias
-    for pico in peaks_data:
+    for pico in peaks_data: # Siento que el nombrado variables podría ser más consistente, pero todas son muy claras
         tf_name = pico["TF_name"]
         start = pico["start"]
         end = pico["end"]
-        secuencia = genoma[start:end]  # Extrae la secuencia del genoma
+        secuencia = genoma[start:end + 1]  # Recuerda que en Python el final es exclusivo, por lo que se suma 1 al índice final para hacer el slicing completo
         if tf_name not in secuencias_por_tf:
             secuencias_por_tf[tf_name] = []  # Crea una lista para el TF_name
         secuencias_por_tf[tf_name].append(secuencia)  # Añade la secuencia extraída

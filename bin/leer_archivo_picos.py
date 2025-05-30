@@ -27,8 +27,8 @@ def leer_archivo_picos(peaks_path):
 
     except FileNotFoundError:
         print(f"Error: No se encontró el archivo en la ruta {peaks_path}.")
-        raise
+        raise 
 
-    except Exception as e:
+    except Exception as e: 
         print(f"Error al procesar el archivo de picos: {e}")
         raise
